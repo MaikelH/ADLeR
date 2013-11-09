@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ADLER.Collections
+namespace ADLER.Collections.Geometric
 {
     internal class KdTreeNode<T>
     {

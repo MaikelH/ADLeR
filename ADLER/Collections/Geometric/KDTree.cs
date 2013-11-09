@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ADLER.Collections
+namespace ADLER.Collections.Geometric
 {
     public class KdTree<T> : ICollection<T>
     {

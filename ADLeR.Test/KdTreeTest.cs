@@ -1,4 +1,4 @@
-﻿using ADLER.Collections;
+﻿using ADLER.Collections.Geometric;
 using NUnit.Framework;
 using System.Windows;
 
