@@ -45,7 +45,7 @@ namespace ADLER.Collections
         /// <param name="item">Item of type T to insert</param>
         public void Add(T item)
         {
-            if (!this._readOnly)
+            if(!this._readOnly)
             {
                 // Check of root Node !=  null
                 // if null insert as root node
@@ -71,7 +71,7 @@ namespace ADLER.Collections
         }
 
         /// <summary>
-        /// Clears the contents of the list and resets size to zero.
+        /// Clears the contents of the list and resets size of the collection to zero.
         /// </summary>
         public void Clear()
         {
@@ -84,7 +84,19 @@ namespace ADLER.Collections
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            SingleLinkedNode<T> temp = this._startNode;
+
+            while (temp.Next != null)
+            {
+                if (temp.Equals(item))
+                {
+                    return true;
+                }
+                
+                temp = temp.Next;
+            }
+
+            return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -92,19 +104,51 @@ namespace ADLER.Collections
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns the number of elements in this collection.
+        /// </summary>
         public int Count
         {
             get { return _size; }
         }
 
+        /// <summary>
+        /// Returns whether this collection is read-only. If the collection is read-only this elements of this 
+        /// collection cannot be modified, removed or added.
+        /// </summary>
         public bool IsReadOnly
         {
             get { return this._readOnly; }
         }
 
+        /// <summary>
+        /// Removes the specified element from the collection.
+        /// </summary>
+        /// <param name="item">Element to remove</param>
+        /// <returns>True if element is removed</returns>
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            if (!_readOnly)
+            {
+                SingleLinkedNode<T> temp = this._startNode;
+
+                if (temp.Equals(item))
+                {
+                    return removeAfter(temp);
+                }
+                else
+                {
+                    while (temp.Next != null)
+                    {
+                        if (temp.Next.Equals(item))
+                        {
+                            return removeAfter(temp);
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -115,6 +159,18 @@ namespace ADLER.Collections
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
+        }
+
+        private bool removeAfter(SingleLinkedNode<T> node)
+        {
+            if (node.Next == null)
+            {
+                return false;
+            }
+
+            node.Next = node.Next.Next;
+
+            return true;
         }
     }
 }
