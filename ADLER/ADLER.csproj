@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Collections\Geometric\KDTree.cs" />
     <Compile Include="Collections\Geometric\KDTreeNode.cs" />
+    <Compile Include="Collections\SingleLinkedList.cs" />
+    <Compile Include="Collections\SingleLinkedNode.cs" />
     <Compile Include="Collections\Stack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
