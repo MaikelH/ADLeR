@@ -10,6 +10,7 @@ namespace ADLER.Collections
     {
         private SingleLinkedNode<T> _startNode;
         private int _size;
+        private bool _readOnly = false;
 
         public int IndexOf(T item)
         {
@@ -39,36 +40,46 @@ namespace ADLER.Collections
         }
 
         /// <summary>
-        /// 
+        /// Insert an item at the end of the list.
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">Item of type T to insert</param>
         public void Add(T item)
         {
-            // Check of root Node !=  null
-            // if null insert as root node
-            if (this._startNode == null)
+            if (!this._readOnly)
             {
-                this._startNode = new SingleLinkedNode<T>(item);
-            }
-            else
-            {
-                SingleLinkedNode<T> temp = _startNode;
-
-                while (temp.Next == null)
+                // Check of root Node !=  null
+                // if null insert as root node
+                if (this._startNode == null)
                 {
-                    temp = temp.Next;
+                    this._startNode = new SingleLinkedNode<T>(item);
+                }
+                else
+                {
+                    SingleLinkedNode<T> temp = _startNode;
+
+                    while (temp.Next == null)
+                    {
+                        temp = temp.Next;
+                    }
+
+                    // End of list found insert element 
+                    temp.Next = new SingleLinkedNode<T>(item);
                 }
 
-                // End of list found insert element 
-                temp.Next = new SingleLinkedNode<T>(item);
+                this._size++;
             }
-
-            this._size++;
         }
 
+        /// <summary>
+        /// Clears the contents of the list and resets size to zero.
+        /// </summary>
         public void Clear()
         {
-            throw new NotImplementedException();
+            if (!this._readOnly)
+            {
+                this._startNode = null;
+                this._size = 0;
+            }
         }
 
         public bool Contains(T item)
@@ -88,7 +99,7 @@ namespace ADLER.Collections
 
         public bool IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { return this._readOnly; }
         }
 
         public bool Remove(T item)
