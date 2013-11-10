@@ -148,7 +148,22 @@ namespace ADLER.Collections
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if (arrayIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if (array.Length - arrayIndex < _size)
+            {
+                throw new ArgumentException("The collection is bigger than the available space in the array");   
+            }
+
+            SingleLinkedNode<T> temp = _startNode;
+            for (int i = 0; i < _size; i++)
+            {
+                array[i + arrayIndex] = temp.Value;
+                temp = temp.Next;
+            }
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using ADLER.Collections;
+﻿using System;
+using ADLER.Collections;
 using NUnit.Framework;
 
 namespace ADLeR.Test
@@ -142,6 +143,49 @@ namespace ADLeR.Test
             Assert.AreEqual(0, testList[0]);
             Assert.AreEqual(1, testList[2]);
             Assert.AreEqual(2, testList.Count);
+        }
+
+        [Test]
+        public void CopyToTest()
+        {
+            SingleLinkedList<int> testList = new SingleLinkedList<int>();
+            testList.Add(0);
+            testList.Add(1);
+            testList.Add(2);
+
+            int[] array = new int[5];
+
+            testList.CopyTo(array, 2);
+
+            Assert.AreEqual(0, array[2]);
+            Assert.AreEqual(1, array[3]);
+            Assert.AreEqual(2, array[4]);
+        }
+
+        [Test]
+        public void CopyToArrayToSmallTest()
+        {
+            SingleLinkedList<int> testList = new SingleLinkedList<int>();
+            testList.Add(0);
+            testList.Add(1);
+            testList.Add(2);
+
+            int[] array = new int[4];
+
+            Assert.Catch<ArgumentException>(() => testList.CopyTo(array, 2));
+        }
+
+        [Test]
+        public void CopyToArrayArrayIndexTest()
+        {
+            SingleLinkedList<int> testList = new SingleLinkedList<int>();
+            testList.Add(0);
+            testList.Add(1);
+            testList.Add(2);
+
+            int[] array = new int[4];
+
+            Assert.Catch<ArgumentOutOfRangeException>(() => testList.CopyTo(array, -1));
         }
     }
 }
