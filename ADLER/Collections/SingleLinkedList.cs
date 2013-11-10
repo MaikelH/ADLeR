@@ -11,7 +11,19 @@ namespace ADLER.Collections
 
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            SingleLinkedNode<T> temp = _startNode;
+
+            for (int i = 0; i < _size; i++)
+            {
+                if (temp.Value.Equals(item))
+                {
+                    return i;
+                }
+
+                temp = temp.Next;
+            }
+
+            return -1;
         }
 
         public void Insert(int index, T item)
@@ -21,7 +33,32 @@ namespace ADLER.Collections
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if (_readOnly) return;
+            
+            if (index <= _size)
+            {
+                SingleLinkedNode<T> temp = _startNode;
+
+                if (index == 0)
+                {
+                    _startNode = _startNode.Next;
+                    _size--; 
+                }
+                else
+                {
+                    for (int i = 1; i < index; i++)
+                    {
+                        temp = temp.Next;
+                    }
+
+                    removeAfter(temp);
+                    _size--;   
+                }
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
         }
 
         public T this[int index]
