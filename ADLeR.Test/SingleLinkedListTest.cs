@@ -8,7 +8,7 @@ namespace ADLeR.Test
     {
 
         [Test]
-        public void TestAdd()
+        public void AddTest()
         {
             SingleLinkedList<int> testList = new SingleLinkedList<int>();
             testList.Add(0);
@@ -20,7 +20,7 @@ namespace ADLeR.Test
         }
 
         [Test]
-        public void TestRemoveStart()
+        public void RemoveStartTest()
         {
             SingleLinkedList<int> testList = new SingleLinkedList<int>();
             testList.Add(0);
@@ -33,7 +33,7 @@ namespace ADLeR.Test
         }
 
         [Test]
-        public void TestRemoveMiddle()
+        public void RemoveMiddleTest()
         {
             SingleLinkedList<int> testList = new SingleLinkedList<int>();
             testList.Add(0);
@@ -48,7 +48,7 @@ namespace ADLeR.Test
         }
 
         [Test]
-        public void TestRemoveEnd()
+        public void RemoveEndTest()
         {
             SingleLinkedList<int> testList = new SingleLinkedList<int>();
             testList.Add(0);
@@ -60,6 +60,19 @@ namespace ADLeR.Test
             Assert.AreEqual(0, testList[0]);
             Assert.AreEqual(1, testList[2]);
             Assert.AreEqual(2, testList.Count);
+        }
+
+        [Test]
+        public void ContainsTest()
+        {
+            SingleLinkedList<int> testList = new SingleLinkedList<int>();
+            testList.Add(0);
+            testList.Add(1);
+            testList.Add(2);
+   
+            Assert.IsTrue(testList.Contains(0));
+            Assert.IsTrue(testList.Contains(1));
+            Assert.IsTrue(testList.Contains(2));
         }
     }
 }

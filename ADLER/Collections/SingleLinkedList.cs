@@ -96,9 +96,9 @@ namespace ADLER.Collections
         {
             SingleLinkedNode<T> temp = _startNode;
 
-            while (temp.Next != null)
+            for(int i = 0; i < _size; i++)
             {
-                if (temp.Equals(item))
+                if (temp.Value.Equals(item))
                 {
                     return true;
                 }
