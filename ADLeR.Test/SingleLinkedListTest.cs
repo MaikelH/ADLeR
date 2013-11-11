@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ADLER.Collections;
 using NUnit.Framework;
 
@@ -186,6 +187,29 @@ namespace ADLeR.Test
             int[] array = new int[4];
 
             Assert.Catch<ArgumentOutOfRangeException>(() => testList.CopyTo(array, -1));
+        }
+
+        [Test]
+        public void EnumeratorTest()
+        {
+            SingleLinkedList<int> testList = new SingleLinkedList<int>();
+            testList.Add(0);
+            testList.Add(1);
+            testList.Add(2);
+
+            IEnumerator<int> enumerator = testList.GetEnumerator();
+
+            Assert.AreEqual(0, enumerator.Current );
+            enumerator.MoveNext();
+            Assert.AreEqual(0, enumerator.Current);
+            enumerator.MoveNext();
+            Assert.AreEqual(1, enumerator.Current);
+            enumerator.MoveNext();
+            Assert.AreEqual(2, enumerator.Current);
+
+            Assert.IsFalse(enumerator.MoveNext());
+
+            Assert.AreEqual(0, enumerator.Current);
         }
     }
 }

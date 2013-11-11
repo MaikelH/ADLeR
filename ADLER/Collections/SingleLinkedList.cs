@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ADLER.Collections.Enumerators;
 
 namespace ADLER.Collections
 {
@@ -226,7 +227,7 @@ namespace ADLER.Collections
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return new SingleLinkedListEnumerator<T>(_startNode);
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
