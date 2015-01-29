@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>ADLeR</title>
+    <authors>M. Hofman</authors>
+    <owners>Chronos Technology</owners>
+    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>https://github.com/MaikelH/ADLeR</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Algorithm and datastructures for .NET.</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Chronos Technology 2015</copyright>
+    <tags>Datastructures Algorithms</tags>
+  </metadata>
+
+  <files>
+  	<file src="bin\release\ADLER.dll" target="lib" /> 
+  </files>
+</package>
